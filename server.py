@@ -20,6 +20,11 @@ def button_pressed():
     return redirect(url_for('counter_home_page'))
 
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
 @app.route("/useless")
 def handle():
     return "Doesn't matter if the work's incomplete."
