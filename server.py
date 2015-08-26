@@ -8,7 +8,8 @@ def counter_home_page():
     app.my_vars['page_count'] += 1
     count = app.my_vars['page_count']
     return render_template("home.html",
-                           count_variable_visible_in_template=count)
+                           count_variable_visible_in_template=count,
+                           i_trust_you=False)
 
 
 @app.route("/useless")
