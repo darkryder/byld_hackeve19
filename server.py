@@ -7,4 +7,5 @@ def handle():
     return "Doesn't matter if the work's incomplete."
 
 if __name__ == "__main__":
+    app.debug = True
     app.run()
