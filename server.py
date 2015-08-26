@@ -1,6 +1,9 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 app.my_vars = {'page_count': 0, 'button_count': 0, 'trust': False}
+
+ADMIN_EMAIL = "a@b.com"
+ADMIN_PWD = "pwd"
 
 
 @app.route("/")
@@ -21,9 +24,14 @@ def button_pressed():
     return redirect(url_for('counter_home_page'))
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    app.my_vars['trust'] = not app.my_vars['trust']
+    method = request.method
+    email = request.form.get("email")
+    password = request.form.get("password")
+    if method == "POST" and email == ADMIN_EMAIL and password == ADMIN_PWD:
+        app.my_vars['trust'] = True
+        return redirect(url_for('counter_home_page'))
     return render_template("login.html")
 
 
