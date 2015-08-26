@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 app = Flask(__name__)
-app.my_vars = {'page_count': 0, 'button_count': 0}
+app.my_vars = {'page_count': 0, 'button_count': 0, 'trust': False}
 
 
 @app.route("/")
@@ -8,9 +8,10 @@ def counter_home_page():
     app.my_vars['page_count'] += 1
     count = app.my_vars['page_count']
     button_count = app.my_vars['button_count']
+    trust = app.my_vars['trust']
     return render_template("home.html",
                            count_variable_visible_in_template=count,
-                           i_trust_you=True,
+                           i_trust_you=trust,
                            button_count=button_count)
 
 
@@ -22,6 +23,7 @@ def button_pressed():
 
 @app.route("/login")
 def login():
+    app.my_vars['trust'] = not app.my_vars['trust']
     return render_template("login.html")
 
 

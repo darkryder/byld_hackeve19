@@ -38,13 +38,24 @@
         <h1>Oooh, what does this button do?</h1>
       </div>
       <p class="lead"><a href="/increment">Danger.</a></p>
+
+      {% if i_trust_you %}
       <p class="lead">Badass count: {{ button_count }}</p>
+      {% else %}
+      <p class="lead">Who you?</p>
+      {% endif %}
+
     </div>
 
     <div class="container">
       <div class="page-header">
         <h1>Admin login</h1>
       </div>
+
+      {% if i_trust_you %}
+      <p class="lead">It seems as if you're already signed in</p>
+      {% endif %}
+
       <p class="lead"><a href="/login">Login here.</a></p>
     </div>
 
